@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "node setup-env.js && npx http-server -c-1"
+    "dev": "node setup-env.js && npx http-server public -c-1",
+    "build": "node setup-env.js"
   },
   "devDependencies": {
     "http-server": "^14.1.1"

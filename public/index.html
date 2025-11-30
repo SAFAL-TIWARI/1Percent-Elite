@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1% Elite Vault</title>
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
+    <meta name="description" content="All resources of your Academics at one place">
+    <meta name="keywords" content="1% Elite Vault, 1% Satians, 1% Elite Satians, Satians, Academics, 1% Elite">
+    <meta name="author" content="1% Elite Satians">
+    <meta property="og:title" content="1% Elite Vault">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://1percent-elite.vercel.app">
+    <meta property="og:image" content="https://1percent-elite.vercel.app/assets/preview.png">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Using FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="top-bar">
+            <div class="logo-area">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>1<sup>%</sup> Elite</span>
+            </div>
+            <div class="header-controls">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <main class="main-layout">
+
+            <!-- Left Sidebar: Navigation -->
+            <aside class="sidebar-left" id="sidebar-left">
+                <div class="sidebar-header">
+                    <h3>Explorer</h3>
+                    <button class="close-sidebar-btn mobile-only" id="close-left-sidebar"><i
+                            class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="folder-tree" id="folder-tree">
+                    <!-- Folder structure injected by JS -->
+                </div>
+            </aside>
+
+            <!-- Center: Content Viewer -->
+            <section class="content-viewer">
+                <div class="mobile-header-controls mobile-only">
+                    <button id="open-left-sidebar"><i class="fa-solid fa-bars"></i></button>
+                    <span class="mobile-title">Dashboard</span>
+                    <button id="open-right-sidebar"><i class="fa-solid fa-folder-open"></i></button>
+                </div>
+
+                <div class="action-bar">
+                    <div class="file-info">
+                        <span id="active-file-name">No file selected</span>
+                    </div>
+                    <div class="file-actions">
+                        <button class="btn btn-secondary" id="share-btn"><i class="fa-solid fa-share-nodes"></i>
+                            Share</button>
+                        <button class="btn btn-primary" id="download-btn"><i class="fa-solid fa-download"></i>
+                            Download</button>
+                    </div>
+                </div>
+
+                <div class="viewer-container" id="viewer-container">
+                    <div class="empty-state">
+                        <i class="fa-regular fa-file"></i>
+                        <p>Select a file from the list to preview</p>
+                    </div>
+                    <iframe id="content-frame" class="content-frame hidden" src="" frameborder="0"></iframe>
+                    <img id="content-image" class="content-image hidden" src="" alt="Preview">
+                </div>
+            </section>
+
+            <!-- Right Sidebar: File List -->
+            <aside class="sidebar-right" id="sidebar-right">
+                <div class="sidebar-header">
+                    <h3>Files</h3>
+                    <button class="close-sidebar-btn mobile-only" id="close-right-sidebar"><i
+                            class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="file-list-container">
+                    <ul class="file-list" id="file-list">
+                        <!-- File list injected by JS -->
+                        <li class="empty-list-msg">Select a folder to view files</li>
+                    </ul>
+                </div>
+            </aside>
+
+        </main>
+    </div>
+
+    <!-- Share Modal -->
+    <div class="modal-backdrop hidden" id="share-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Share File</h3>
+                <button class="close-modal-btn" id="close-share-modal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Share this file with others via link or social media.</p>
+
+                <div class="input-group">
+                    <input type="text" id="share-link-input" readonly placeholder="https://drive.google.com/...">
+                    <button class="btn btn-primary" id="copy-link-btn">
+                        <i class="fa-regular fa-copy"></i> Copy
+                    </button>
+                </div>
+
+                <div class="social-share">
+                    <p>Share via:</p>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" class="social-icon whatsapp" id="share-whatsapp" title="WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <a href="#" target="_blank" class="social-icon telegram" id="share-telegram" title="Telegram">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                        <a href="#" target="_blank" class="social-icon email" id="share-email" title="Email">
+                            <i class="fa-regular fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="env.js?v=2"></script>
+    <script type="module" src="scripts.js?v=3"></script>
+</body>
+
+</html>

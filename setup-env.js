@@ -20,7 +20,7 @@ try {
     });
 
     const jsContent = `window.CONFIG = {
-    GOOGLE_API_KEY: "${envVars.GOOGLE_DRIVE_API_KEY || envVars.VITE_GOOGLE_API_KEY || ''}"
+    GOOGLE_DRIVE_API_KEY: "${envVars.GOOGLE_DRIVE_API_KEY || envVars.VITE_GOOGLE_DRIVE_API_KEY || ''}"
 };`;
 
     fs.writeFileSync(outputPath, jsContent);
@@ -28,3 +28,4 @@ try {
 } catch (error) {
     console.error('Error generating env.js:', error);
 }
+    

@@ -11,6 +11,12 @@ const activeFileName = document.getElementById('active-file-name');
 const headerTitle = document.getElementById('header-title');
 const themeToggleBtn = document.getElementById('theme-toggle');
 
+// Search Elements
+const folderSearchInput = document.getElementById('folder-search');
+const folderSearchResults = document.getElementById('folder-search-results');
+const fileSearchInput = document.getElementById('file-search');
+const fileSearchResults = document.getElementById('file-search-results');
+
 // Mobile Sidebar Elements
 const leftSidebar = document.getElementById('sidebar-left');
 const rightSidebar = document.getElementById('sidebar-right');
@@ -163,18 +169,24 @@ async function toggleFolder(folderId, folderNode) {
             const parentLevel = parseInt(activeEl.dataset.level || 0);
             folderNode.children.forEach(child => {
                 renderFolderNode(child, group, parentLevel + 1);
+                collectAllFolders(child, allFolders, folderNode);
             });
         }
     }
 
     // Always render files for the selected folder
+    currentFiles = folderNode.files || [];
     renderFileList(folderNode.files);
+    fileSearchInput.value = '';
+    fileSearchResults.classList.remove('active');
+    fileSearchResults.innerHTML = '';
+    fileListContainer.querySelectorAll('.file-item').forEach(item => item.classList.remove('hidden'));
 
-    // Mobile Logic - Removed auto-open
-    // if (window.innerWidth <= 768) {
-    //     leftSidebar.classList.remove('open');
-    //     rightSidebar.classList.add('open');
-    // }
+    // Mobile Logic - Open right sidebar if folder has files
+    if (window.innerWidth <= 768 && folderNode.files && folderNode.files.length > 0) {
+        leftSidebar.classList.remove('open');
+        rightSidebar.classList.add('open');
+    }
 }
 
 // Redefine init to be safe
@@ -199,6 +211,9 @@ async function safeInit() {
 
     console.log('Rendering root folder...');
     renderFolderNode(rootFolder, folderTreeContainer, 0);
+    
+    allFolders = collectAllFolders(rootFolder);
+    console.log('Collected folders:', allFolders);
 
     // Auto-expand root? Maybe just select it.
     // toggleFolder(rootFolder.id, rootFolder); 
@@ -224,10 +239,136 @@ function renderFileList(files) {
             <i class="fa-regular ${getFileIcon(file.type)}"></i>
             <span class="file-name">${file.name}</span>
         `;
-        li.addEventListener('click', () => previewFile(file));
+        li.addEventListener('click', () => {
+            fileListContainer.querySelectorAll('.file-item').forEach(item => item.classList.remove('active'));
+            li.classList.add('active');
+            previewFile(file);
+        });
         fileListContainer.appendChild(li);
     });
 }
+
+// Store all folders for search functionality
+let allFolders = [];
+let folderHierarchy = {};
+
+function collectAllFolders(node, folders = [], parent = null) {
+    if (node) {
+        folders.push(node);
+        if (parent) {
+            folderHierarchy[node.id] = parent;
+        }
+        if (node.children && node.children.length > 0) {
+            node.children.forEach(child => collectAllFolders(child, folders, node));
+        }
+    }
+    return folders;
+}
+
+// Expand parent folders to show folder in hierarchy
+function expandParentFolders(folderId) {
+    let currentId = folderId;
+    const toExpand = [];
+    
+    while (folderHierarchy[currentId]) {
+        const parentId = folderHierarchy[currentId].id;
+        toExpand.push(parentId);
+        currentId = parentId;
+    }
+    
+    toExpand.forEach(parentId => {
+        const parentEl = document.querySelector(`.tree-item[data-id="${parentId}"]`);
+        const group = document.getElementById(`group-${parentId}`);
+        const arrow = parentEl ? parentEl.querySelector('.dropdown-arrow') : null;
+        
+        if (group && !group.classList.contains('expanded')) {
+            group.classList.add('expanded');
+            if (arrow) {
+                arrow.classList.add('rotated');
+            }
+        }
+    });
+}
+
+// Search Folders
+folderSearchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase().trim();
+    
+    if (!searchTerm) {
+        folderSearchResults.classList.remove('active');
+        folderSearchResults.innerHTML = '';
+        return;
+    }
+
+    const results = allFolders.filter(folder => 
+        folder.name.toLowerCase().includes(searchTerm)
+    );
+
+    displayFolderSearchResults(results, searchTerm);
+});
+
+function displayFolderSearchResults(results, searchTerm) {
+    folderSearchResults.innerHTML = '';
+    
+    if (results.length === 0) {
+        folderSearchResults.innerHTML = '<div class="empty-msg">No folders found</div>';
+        folderSearchResults.classList.add('active');
+        return;
+    }
+
+    folderSearchResults.classList.add('active');
+    results.forEach(folder => {
+        const resultItem = document.createElement('div');
+        resultItem.className = 'search-result-item folder-result';
+        resultItem.innerHTML = `
+            <i class="fa-solid fa-folder"></i>
+            <span>${folder.name}</span>
+        `;
+        resultItem.addEventListener('click', () => {
+            folderSearchInput.value = '';
+            folderSearchResults.classList.remove('active');
+            folderSearchResults.innerHTML = '';
+            expandParentFolders(folder.id);
+            toggleFolder(folder.id, folder);
+        });
+        folderSearchResults.appendChild(resultItem);
+    });
+}
+
+// Store current files for search
+let currentFiles = [];
+
+// Search Files - Filter existing list
+fileSearchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase().trim();
+    const fileItems = fileListContainer.querySelectorAll('.file-item');
+    
+    if (!searchTerm) {
+        fileItems.forEach(item => item.classList.remove('hidden'));
+        fileSearchResults.classList.remove('active');
+        fileSearchResults.innerHTML = '';
+        return;
+    }
+
+    let visibleCount = 0;
+    fileItems.forEach(item => {
+        const fileName = item.querySelector('.file-name').textContent.toLowerCase();
+        if (fileName.includes(searchTerm)) {
+            item.classList.remove('hidden');
+            visibleCount++;
+        } else {
+            item.classList.add('hidden');
+        }
+    });
+
+    if (visibleCount === 0) {
+        fileSearchResults.classList.add('active');
+        fileSearchResults.innerHTML = '<div class="empty-msg">No files found</div>';
+    } else {
+        fileSearchResults.classList.remove('active');
+        fileSearchResults.innerHTML = '';
+    }
+});
 
 // Get Icon based on file type
 function getFileIcon(type) {
@@ -264,6 +405,7 @@ function previewFile(file) {
     // Mobile: Close right sidebar to show content
     if (window.innerWidth <= 768) {
         rightSidebar.classList.remove('open');
+        leftSidebar.classList.remove('open');
     }
 }
 

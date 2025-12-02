@@ -48,8 +48,17 @@
                     <button class="close-sidebar-btn mobile-only" id="close-left-sidebar"><i
                             class="fa-solid fa-xmark"></i></button>
                 </div>
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="folder-search" class="search-input" placeholder="Search folders...">
+                    </div>
+                </div>
                 <div class="folder-tree" id="folder-tree">
                     <!-- Folder structure injected by JS -->
+                </div>
+                <div class="search-results" id="folder-search-results">
+                    <!-- Search results injected by JS -->
                 </div>
             </aside>
 
@@ -90,11 +99,20 @@
                     <button class="close-sidebar-btn mobile-only" id="close-right-sidebar"><i
                             class="fa-solid fa-xmark"></i></button>
                 </div>
+                <div class="search-container">
+                    <div class="search-input-wrapper">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="file-search" class="search-input" placeholder="Search files...">
+                    </div>
+                </div>
                 <div class="file-list-container">
                     <ul class="file-list" id="file-list">
                         <!-- File list injected by JS -->
                         <li class="empty-list-msg">Select a folder to view files</li>
                     </ul>
+                </div>
+                <div class="search-results" id="file-search-results">
+                    <!-- Search results injected by JS -->
                 </div>
             </aside>
 

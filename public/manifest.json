@@ -6,6 +6,43 @@
     "background_color": "#0f1115",
     "theme_color": "#161b22",
     "orientation": "portrait-primary",
+    "description": "All your Academics resources at one place. Access 1% Elite Vault offline.",
+    "id": "/",
+    "categories": [
+        "education",
+        "productivity",
+        "utilities"
+    ],
+    "lang": "en",
+    "dir": "ltr",
+    "screenshots": [
+        {
+            "src": "https://1-percent-elite.vercel.app/assets/preview.png",
+            "sizes": "1200x630",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "https://1-percent-elite.vercel.app/assets/preview.png",
+            "sizes": "1200x630",
+            "type": "image/png",
+            "form_factor": "narrow"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Explorer",
+            "short_name": "Explorer",
+            "description": "Browse your folders",
+            "url": "./index.html?section=explorer",
+            "icons": [
+                {
+                    "src": "https://1-percent-elite.vercel.app/assets/icon-192x192.png",
+                    "sizes": "192x192"
+                }
+            ]
+        }
+    ],
     "icons": [
         {
             "src": "https://1-percent-elite.vercel.app/assets/icon-192x192.png",

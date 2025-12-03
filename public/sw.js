@@ -39,35 +39,50 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Fetch event: Network first, then cache (for dynamic content like API calls), 
-// but Cache first for static assets could be better. 
-// Let's use Stale-While-Revalidate for best of both worlds for this type of app.
+// Fetch event: Hybrid Strategy
 self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        caches.match(event.request)
-            .then((response) => {
-                // Cache hit - return response
-                if (response) {
+    const url = new URL(event.request.url);
+
+    // Strategy 1: Network First for API calls (Google Drive) to get fresh data
+    if (url.hostname.includes('googleapis.com') || url.hostname.includes('script.google.com')) {
+        event.respondWith(
+            fetch(event.request)
+                .then((response) => {
+                    // Update cache with new data
+                    const responseToCache = response.clone();
+                    caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, responseToCache);
+                    });
                     return response;
-                }
-                return fetch(event.request).then(
-                    (response) => {
-                        // Check if we received a valid response
+                })
+                .catch(() => {
+                    // Fallback to cache if offline
+                    return caches.match(event.request);
+                })
+        );
+    }
+    // Strategy 2: Cache First for Static Assets (App Shell) for speed
+    else {
+        event.respondWith(
+            caches.match(event.request)
+                .then((response) => {
+                    // Return cached response if found
+                    if (response) {
+                        return response;
+                    }
+                    // Otherwise fetch from network
+                    return fetch(event.request).then((response) => {
+                        // Cache new static assets (like new icons)
                         if (!response || response.status !== 200 || response.type !== 'basic') {
                             return response;
                         }
-
-                        // Clone the response
                         const responseToCache = response.clone();
-
-                        caches.open(CACHE_NAME)
-                            .then((cache) => {
-                                cache.put(event.request, responseToCache);
-                            });
-
+                        caches.open(CACHE_NAME).then((cache) => {
+                            cache.put(event.request, responseToCache);
+                        });
                         return response;
-                    }
-                );
-            })
-    );
+                    });
+                })
+        );
+    }
 });

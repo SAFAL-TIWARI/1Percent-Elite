@@ -5,3 +5,7 @@ dist
 dist-ssr
 *.local
 env.js
+
+icon-192x192 old.png
+icon-512x512-old.png
+icon-192x192-old.png

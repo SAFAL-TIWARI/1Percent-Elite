@@ -12,6 +12,10 @@ A premium, responsive document management interface designed to seamlessly integ
     -   **Download**: Direct download links for files.
     -   **Share**: Generate shareable links and share directly to WhatsApp, Telegram, or Email.
 -   **Modern UI**: Glassmorphism effects, smooth transitions, and a clean, professional aesthetic.
+-   **PWA Support**:
+    -   **Installable**: Install as a native app on Android, iOS, and Desktop.
+    -   **Offline Capable**: Works offline with a hybrid caching strategy (Cache-First for assets, Network-First for data).
+    -   **App-like Experience**: Standalone mode with custom splash screen and icons.
 
 ## 🛠️ Tech Stack
 
@@ -27,6 +31,16 @@ A premium, responsive document management interface designed to seamlessly integ
 -   Node.js installed on your machine.
 -   A Google Cloud Project with the **Google Drive API** enabled.
 -   An API Key from Google Cloud Console.
+
+### Installation & Setup
+
+#### 📱 Install as App (PWA)
+1.  **Visit the Website**: Go to the deployed URL.
+2.  **Install**:
+    -   **Desktop**: Click the install icon in the address bar.
+    -   **Android**: Tap "Add to Home Screen" or "Install App" from the Chrome menu.
+    -   **iOS**: Tap Share -> "Add to Home Screen".
+3.  **Offline Use**: The app will now work offline and load instantly!
 
 ### Local Development
 

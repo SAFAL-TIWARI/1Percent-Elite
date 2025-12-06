@@ -717,7 +717,7 @@ aside {
     .search-input {
         font-size: 0.85rem;
     }
-    
+
     /* Hide button text on mobile, show only icons */
     #share-btn,
     #download-btn,
@@ -730,7 +730,7 @@ aside {
         justify-content: center;
         font-size: 0;
     }
-    
+
     #share-btn i,
     #download-btn i,
     #copy-link-btn i {
@@ -738,4 +738,55 @@ aside {
         font-size: 1.1rem;
     }
 
+}
+
+/* Floating Drive Icon */
+.floating-drive-icon {
+    position: fixed;
+    bottom: 35px;
+    right: 40px;
+    width: 60px;
+    height: 60px;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: white; */
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.floating-drive-icon img {
+    width: 65%;
+    height: 65%;
+    object-fit: contain;
+}
+
+.floating-drive-icon:hover {
+    transform: scale(1.1);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-drive-icon {
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+    }
 }

@@ -437,13 +437,14 @@ function openShareModal() {
     shareLinkInput.value = link;
 
     // Setup Social Links
-    const text = `Check out this file: ${activeFile.name}`;
+    const text = `Check out this file: ${activeFile.name} -`;
     const encodedText = encodeURIComponent(text);
     const encodedLink = encodeURIComponent(link);
+    const websiteMessage = encodeURIComponent('\n\nAlso visit our website for more resources: https://1-percent-elite.vercel.app/');
 
-    shareWhatsapp.href = `https://wa.me/?text=${encodedText}%20${encodedLink}`;
-    shareTelegram.href = `https://t.me/share/url?url=${encodedLink}&text=${encodedText}`;
-    shareEmail.href = `mailto:?subject=${encodedText}&body=${encodedLink}`;
+    shareWhatsapp.href = `https://wa.me/?text=${encodedText}%20${encodedLink}${websiteMessage}`;
+    shareTelegram.href = `https://t.me/share/url?url=${encodedLink}&text=${encodedText}${websiteMessage}`;
+    shareEmail.href = `mailto:?subject=${encodedText}&body=${encodedLink}${websiteMessage}`;
 
     shareModal.classList.remove('hidden');
 }

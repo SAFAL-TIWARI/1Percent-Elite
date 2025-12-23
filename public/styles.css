@@ -120,9 +120,7 @@ aside {
     border-right: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    overflow-x: auto;
-    /* Allow horizontal scroll for long names */
+    overflow: hidden;
 }
 
 .sidebar-right {
@@ -196,6 +194,9 @@ aside {
 .search-results {
     padding: 10px 0;
     display: none;
+    overflow-y: auto;
+    overflow-x: auto;
+    flex: 1;
 }
 
 .search-results.active {
@@ -235,6 +236,9 @@ aside {
 /* Folder Tree */
 .folder-tree {
     padding: 10px 0;
+    overflow-y: auto;
+    overflow-x: auto;
+    flex: 1;
 }
 
 .tree-item {
@@ -298,6 +302,13 @@ aside {
 
 .dropdown-arrow.rotated {
     transform: rotate(90deg);
+}
+
+/* File List Container */
+.file-list-container {
+    overflow-y: auto;
+    overflow-x: auto;
+    flex: 1;
 }
 
 /* File List */

@@ -92,6 +92,17 @@ This project is optimized for deployment on Vercel.
 └── .env                 # Local environment variables (gitignored)
 ```
 
+## 📱 App Development Roadmap
+
+Looking to build a mobile app using AI tools? Check out our **[Complete AI App Development Roadmap](docs/AI-App-Development-Roadmap.md)** — a step-by-step guide covering:
+
+- **Design** with Stitch (Figma AI)
+- **Generate** code with Antigravity
+- **Customize** in Flutter
+- **Connect** Firebase backend
+- **Build** APK/IPA
+- **Publish** on Play Store & App Store (and free alternatives)
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://1-percent-elite.vercel.app/sitemap.xml

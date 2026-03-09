@@ -211,7 +211,7 @@ async function safeInit() {
 
     console.log('Rendering root folder...');
     renderFolderNode(rootFolder, folderTreeContainer, 0);
-    
+
     allFolders = collectAllFolders(rootFolder);
     console.log('Collected folders:', allFolders);
 
@@ -269,18 +269,18 @@ function collectAllFolders(node, folders = [], parent = null) {
 function expandParentFolders(folderId) {
     let currentId = folderId;
     const toExpand = [];
-    
+
     while (folderHierarchy[currentId]) {
         const parentId = folderHierarchy[currentId].id;
         toExpand.push(parentId);
         currentId = parentId;
     }
-    
+
     toExpand.forEach(parentId => {
         const parentEl = document.querySelector(`.tree-item[data-id="${parentId}"]`);
         const group = document.getElementById(`group-${parentId}`);
         const arrow = parentEl ? parentEl.querySelector('.dropdown-arrow') : null;
-        
+
         if (group && !group.classList.contains('expanded')) {
             group.classList.add('expanded');
             if (arrow) {
@@ -293,14 +293,14 @@ function expandParentFolders(folderId) {
 // Search Folders
 folderSearchInput.addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase().trim();
-    
+
     if (!searchTerm) {
         folderSearchResults.classList.remove('active');
         folderSearchResults.innerHTML = '';
         return;
     }
 
-    const results = allFolders.filter(folder => 
+    const results = allFolders.filter(folder =>
         folder.name.toLowerCase().includes(searchTerm)
     );
 
@@ -309,7 +309,7 @@ folderSearchInput.addEventListener('input', (e) => {
 
 function displayFolderSearchResults(results, searchTerm) {
     folderSearchResults.innerHTML = '';
-    
+
     if (results.length === 0) {
         folderSearchResults.innerHTML = '<div class="empty-msg">No folders found</div>';
         folderSearchResults.classList.add('active');
@@ -342,7 +342,7 @@ let currentFiles = [];
 fileSearchInput.addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase().trim();
     const fileItems = fileListContainer.querySelectorAll('.file-item');
-    
+
     if (!searchTerm) {
         fileItems.forEach(item => item.classList.remove('hidden'));
         fileSearchResults.classList.remove('active');
@@ -470,5 +470,26 @@ copyLinkBtn.addEventListener('click', () => {
         }, 2000);
     });
 });
+
+// Floating Folder Drawer UI Logic
+const appFolderBtn = document.getElementById('floating-app-folder');
+const folderOverlay = document.getElementById('folder-overlay');
+const closeFolderBtn = document.getElementById('close-folder-btn');
+
+if (appFolderBtn && folderOverlay && closeFolderBtn) {
+    appFolderBtn.addEventListener('click', () => {
+        folderOverlay.classList.remove('hidden');
+    });
+
+    closeFolderBtn.addEventListener('click', () => {
+        folderOverlay.classList.add('hidden');
+    });
+
+    folderOverlay.addEventListener('click', (e) => {
+        if (e.target === folderOverlay) {
+            folderOverlay.classList.add('hidden');
+        }
+    });
+}
 
 document.addEventListener('DOMContentLoaded', safeInit);

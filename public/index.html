@@ -199,11 +199,36 @@
         </div>
     </div>
 
-    <!-- Floating Drive Icon -->
-    <a href="https://drive.google.com/drive/folders/1QSZs3pydG7zdzx3zJ6rtdPcZIhntzSWd" target="_blank"
-        class="floating-drive-icon" title="Open in Google Drive">
-        <img src="assets/g_drive.png" alt="Google Drive">
-    </a>
+    <!-- Floating App Folder (Drawer) -->
+    <div class="floating-app-folder" id="floating-app-folder" title="Apps Drawer">
+        <div class="folder-mini-icons">
+            <img src="assets/g_drive.png" alt="Drive">
+            <div class="folder-mini-icon text-android"><i class="fa-brands fa-android"></i></div>
+            <!-- <div class="folder-mini-icon"></div> -->
+            <!-- <div class="folder-mini-icon"></div> -->
+        </div>
+    </div>
+
+    <!-- Folder Expanded Overlay -->
+    <div class="folder-overlay hidden" id="folder-overlay">
+        <div class="folder-expanded-content" id="folder-expanded-content">
+            <div class="folder-expanded-header">
+                <h3 class="folder-title">Apps</h3>
+                <button class="close-folder-btn" id="close-folder-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="folder-apps-grid">
+                <a href="https://drive.google.com/drive/folders/1QSZs3pydG7zdzx3zJ6rtdPcZIhntzSWd" target="_blank"
+                    class="folder-app-item">
+                    <div class="app-icon-bg bg-white"><img src="assets/g_drive.png" alt="Google Drive"></div>
+                    <span>Drive</span>
+                </a>
+                <a href="assets/1percent-elite.apk" download="1percent-elite.apk" class="folder-app-item">
+                    <div class="app-icon-bg bg-android"><i class="fa-brands fa-android"></i></div>
+                    <span>1% Elite</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
     <script src="env.js?v=2"></script>
     <script type="module" src="scripts.js?v=3"></script>

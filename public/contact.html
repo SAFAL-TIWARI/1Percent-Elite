@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - 1% Elite</title>
+    <link rel="shortcut icon" href="https://1-percent-elite.vercel.app/assets/favicon.png" type="image/png">
+    <meta name="theme-color" content="#161b22">
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="top-bar">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <div class="logo-area">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>1<sup>%</sup> Elite</span>
+                </div>
+            </a>
+            <div class="header-controls">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <main class="main-layout" style="display: block; overflow-y: auto;">
+            <div class="page-content">
+                <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+
+                <h1>Contact Us</h1>
+                <p>Have an issue with the website or app? Or simply a query? Feel free to reach out to us using the form
+                    below.</p>
+
+                <div class="contact-grid">
+                    <!-- Contact Form -->
+                    <div class="contact-form">
+                        <form id="contactForm"
+                            onsubmit="event.preventDefault(); alert('Message sent successfully! We will get back to you shortly.'); this.reset();">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" id="email" class="form-control" placeholder="your@email.com"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject" class="form-label">Subject</label>
+                                <select id="subject" class="form-control" required
+                                    style="cursor: pointer; appearance: auto;">
+                                    <option value="" disabled selected>Select a subject</option>
+                                    <option value="app_issue">App Issue</option>
+                                    <option value="website_issue">Website Issue</option>
+                                    <option value="general_query">General Query</option>
+                                    <option value="resource_request">Resource Request</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea id="message" class="form-control" placeholder="How can we help you?"
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn"><i class="fa-regular fa-paper-plane"
+                                    style="margin-right: 8px;"></i> Send Message</button>
+                        </form>
+                    </div>
+
+                    <!-- Map and Info section -->
+                    <div class="map-section">
+                        <h3>Our Location</h3>
+                        <div class="map-container">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29266.43797179915!2d77.8151027!3d23.5215392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c048a269d1ab7%3A0xf7b28bf51d19bbcc!2sSamrat%20Ashok%20Technological%20Institute!5e0!3m2!1sen!2sin!4v1769781361896!5m2!1sen!2sin"
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <div class="contact-info">
+                            <div class="info-item">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>Samrat Ashok Technological Institute<br>Vidisha, Madhya Pradesh, India</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span>support@1percentelite.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQs -->
+                <div class="faq-section">
+                    <h2>Frequently Asked Questions</h2>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span class="faq-title"><i class="fa-solid fa-circle-question"></i> What is 1% Elite
+                                Vault?</span>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            1% Elite Vault is a centralized platform for academic resources, notes, previous year
+                            question papers, and essential learning materials, curated to assist students in their
+                            educational journey.
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span class="faq-title"><i class="fa-solid fa-circle-question"></i> How do I report a
+                                missing resource or broken link?</span>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            You can easily let us know by using the contact form above. Just select "Website Issue" or
+                            "Resource Request" as the subject and provide the details.
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span class="faq-title"><i class="fa-solid fa-circle-question"></i> Is 1% Elite Vault free
+                                to use?</span>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            Yes! Our platform is entirely free. We believe in open access to educational resources to
+                            help all students succeed in their academics.
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span class="faq-title"><i class="fa-solid fa-circle-question"></i> I have an issue with the
+                                mobile app, what should I do?</span>
+                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            If you encounter any bugs or issues with the 1% Elite mobile app, please select "App Issue"
+                            from the dropdown above and provide details such as your phone model, Android/iOS version,
+                            and a description of the problem.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Script to handle theme toggle -->
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+
+        // Initialize theme
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.hasAttribute('data-theme')) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            }
+        });
+
+        initTheme();
+    </script>
+</body>
+
+</html>

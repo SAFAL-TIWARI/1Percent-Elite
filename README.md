@@ -2,6 +2,8 @@
 
 A premium, responsive document management interface designed to seamlessly integrate with Google Drive. This application provides a sleek, modern way to browse, preview, and share resources directly from a connected Drive folder.
 
+📲 **[Download the App on APKPure](https://apkpure.com/p/com.one_percent_elite.one_percent_elite)**
+
 ## 🚀 Features
 
 -   **Drive Integration**: Browse folders and files in real-time using the Google Drive API.
